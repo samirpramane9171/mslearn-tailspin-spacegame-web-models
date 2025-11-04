@@ -13,11 +13,6 @@ steps:
     packageType: 'sdk'
     version: '8.0.x'
 
-- task: UseDotNet@2
-  displayName: 'Use .NET SDK $(dotnetSdkVersion)'
-  inputs:
-    version: '$(dotnetSdkVersion)'
-
 - task: DotNetCoreCLI@2
   displayName: 'Restore project dependencies'
   inputs:
@@ -42,11 +37,12 @@ steps:
     majorVersion: '1'
     minorVersion: '0'
     patchVersion: '0'
- 
-- task: NuGetCommand@2
+
+# ✅ Replace NuGetCommand@2 with DotNetCoreCLI push
+- task: DotNetCoreCLI@2
   displayName: 'Publish NuGet package'
   inputs:
-    command: push
-    feedPublish: '$(System.TeamProject)/Tailspin.SpaceGame.Web.Models'
-    allowPackageConflicts: true
+    command: 'push'
+    publishVstsFeed: 'Tailspin.SpaceGame.Web.Models'   # <-- Your feed name or ID
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg'
   condition: succeeded()
