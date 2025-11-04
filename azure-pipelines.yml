@@ -16,7 +16,7 @@ steps:
   inputs:
     command: 'restore'
     projects: '**/*.csproj'
-    arguments: '--no-restore --configuration $(buildConfiguration)'
+    arguments: '--verbosity minimal'
 
 - task: DotNetCoreCLI@2
   displayName: 'Build the project - $(buildConfiguration)'
