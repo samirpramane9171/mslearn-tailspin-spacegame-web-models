@@ -43,6 +43,6 @@ steps:
   displayName: 'Publish NuGet package'
   inputs:
     command: 'push'
-    publishVstsFeed: 'Tailspin.SpaceGame.Web.Models'   # <-- Your feed name or ID
+    publishVstsFeed: 'Tailspin.SpaceGame.Web.Models2'   # <-- Your feed name or ID
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg'
   condition: succeeded()
